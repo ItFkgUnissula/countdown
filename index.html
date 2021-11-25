@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Timer</title>
+  <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="css/pomodoro-timer.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+
+  <script src="js/html5shiv.min.js"></script>
+
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <style>
+    :root{
+      --background: #ffffff;
+      --text: #100000;
+      --highlight: #000205;
+    }
+    body{
+      background: var(--background);
+      overflow: hidden;
+      transition: 0.5s background ease;
+    }
+    .theme-switch{
+      --background: #0cea38;
+      --text: #ffffff;
+      color: var(--text);
+      width: 70px;
+      height: 30px;
+      background: var(--highlight);
+      border-radius: 50px;
+      position: relative;
+    }
+    .theme-switch .switch{
+      background: white;
+      width: 24px;
+      height: 24px;
+      background: var(--background);
+      border-radius: 100%;
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      transition: 0.5s all ease;
+    }
+    .light-theme{
+      --background: #050000;
+      --text: #ffffff;
+      background: var(--background);
+    }
+    .light-theme .theme-switch{
+      background: var(--text);
+    }
+    .light-theme .theme-switch .switch{
+      transform: translateX(37px);
+    }
+    .light-theme a{
+      color: var(--text);
+    }
+
+    ul{
+      display: flex;
+      list-style: none;
+    }
+    ul a{
+      margin: 10px;
+      position: relative;
+      color: var(--text);
+      font-family: tahoma;
+      font-size: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    ul a:before{
+      position: absolute;
+      bottom: -2px;
+      content: '';
+      width: 100%;
+      height: 3px;
+      background: var(--highlight);
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    ul a:hover:before{
+      opacity: 1;
+      transition: 0.5s transform ease, 0.8s opacity ease;
+      transform: translateX(0);
+    }
+
+
+    .text-center{
+      color: var(--text);
+    }
+
+    .panel-body.text-center{
+      background: var(--background);
+    }
+
+    button.btn-danger{
+      color: var(--text);
+    }
+    button.btn-warning {
+      color: var(--text);
+    }
+    button.btn-info{
+      color: var(--text);
+    }
+    button.btn-success{
+      color: var(--text);
+    }
+
+
+
+  </style>
+</head>
+<body>
+
+
+
+
+  <div class="container" style="margin-top:5px; width: 100%" >
+
+    <div class="theme-switch">
+      <div class="switch"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+          <img src="img/logo.png" alt="logo" class="logo" style="width: 150px">
+        </div>
+      <!--<h1 class="text-center ">Timer</h1>-->
+    </div>
+    <br>
+
+
+    <div class="row">
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-4">
+        <div class="form-group" align="center">
+          <input type="text" class="" placeholder="Nilai dalam menit" id="myInput" style="width:35%; font-size:22px;"/>
+          <button type="button" onclick="getInputValue();" style="margin: 0 0 6px 10px" class="btn btn-success">Set Nilai</button>
+        </div>
+      </div>
+      <div class="col-lg-4" ></div>
+    </div>
+<br>
+
+
+
+    <div class="panel panel-default" style="font-size: 65px">
+      <div class="panel-body text-center">
+
+        <div class="timer-time timer-container">
+          <div class="timer-time-set timer-box" id="currentTime">
+            <span id="hoursValue">00</span><span>:</span><span id="minutesValue">00</span><span>:</span><span id="secondsValue">00</span>
+          </div>
+          <div class="timer-time-set timer-box" id="nextTime">
+            <span id="hoursNext">00</span><span>:</span><span id="minutesNext">00</span><span>:</span><span id="secondsNext">00</span>
+          </div>
+        </div>
+
+        <div>
+          <button id="" class="btn btn-danger btn-lg" type="submit" style="margin-right: 50px; border-radius: 0" onclick="onStartSuara()">Perhatian Sound!
+          </button>
+
+          <button id="restartButton" class="btn btn-info btn-lg" type="submit" onclick="onResetTimer()">Reset
+          </button>
+
+          <button id="startButton" class="btn btn-success btn-lg" type="submit" onclick="onStartTimer()">Start
+          </button>
+
+          <button id="resumeButton" class="btn btn-warning btn-lg" type="submit" onclick="onResumTimer()">Resume
+          </button>
+         <!-- <button id="stopButton" class="btn btn-danger btn-lg" type="submit" onclick="onStopTimer()">-->
+          <button id="stopButton" class="btn btn-danger btn-lg" type="submit" onclick="onStopTimerSuara()">Stop
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  <footer style="padding:15px; width:0 auto; font-family: sans-serif;font-size: 24px; color: gray; text-align: center">
+    <small>© Copyright 2021, IT Fakultas Kedokteran Gigi <br> Universitas Islam Sultan Agung</small> </footer>
+
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery-1.12.0.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/pomodoro-timer.js"></script>
+
+
+<script>
+
+    var input1;
+    var gMinutes;
+    var dataku;
+
+    //gMinutes = getInputValue();
+    //console.log(getInputValue());
+    //alert();
+    //console.log(getInputValue());
+
+
+    //document.getElementById("demo").innerHTML = myFunction("John");
+
+    $(".theme-switch").on("click", () => {
+      $("body").toggleClass("light-theme");
+    });
+
+
+    $(document).ready(function() {
+        onPomodoroTimer();
+
+    });
+
+    function onPomodoroTimer(dataku){
+        //getInputValue();
+        if ( dataku == null){
+          gMinutes = 10; //nilai default
+        } else {
+            gMinutes = dataku;
+        }
+        //dataku = 1;
+        //gMinutes = dataku;
+
+        stopTimer();
+
+        gHours = 0;
+        //gMinutes = 50;
+        //gMinutes = 5 ;
+        gSeconds = 0;
+
+        resetTimer();
+
+        $('#shortButton').removeClass('btn-success');
+        $('#longButton').removeClass('btn-success');
+        $('#pomodoroButton').addClass('btn-success');
+    }
+
+
+    function getInputValue(){
+        // Selecting the input element and get its value
+        var inputVal = document.getElementById("myInput").value;
+        document.getElementById("minutesValue").innerHTML = inputVal;
+
+        // Displaying the value
+        //alert(inputVal);
+        //input1 = inputVal;
+        //input1 = "1";
+        //return  input1;
+
+        //onPomodoroTimer(input1)
+
+        onPomodoroTimer(inputVal);
+    }
+
+
+</script>
+
+
+
+</body>
+</html>

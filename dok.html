@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Timer</title>
+  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="css/pomodoro-timer.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <style>
+  body { background-color:#fafafa;}
+  </style>
+</head>
+<body>
+  <div class="container" style="margin-top:150px;">
+    <div class="page-header">
+      <h1 class="text-center">Timer</h1>
+      <h2 class="text-center">
+        <span>
+          <!--<button id="pomodoroButton" class="btn btn-default" type="submit" onclick="onPomodoroTimer()" >10 minuts</button>
+          <button id="shortButton" class="btn btn-default" type="submit" onclick="onShortTimer()">5 minuts</button>
+          <button id="longButton" class="btn btn-default" type="submit" onclick="onLongTimer()">15 minuts</button>-->
+        </span>
+      </h2>
+    </div>
+
+    <input type="text" placeholder="Type something..." id="myInput">
+    <button type="button" onclick="getInputValue();">Set Nilai</button>
+
+    <p id="txt"></p>
+
+
+    <script>
+
+    </script>
+
+
+
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+        <div class="timer-time timer-container">
+          <div class="timer-time-set timer-box" id="currentTime">
+            <span id="hoursValue">00</span><span>:</span><span id="minutesValue">00</span><span>:</span><span id="secondsValue">00</span>
+          </div>
+          <div class="timer-time-set timer-box" id="nextTime">
+            <span id="hoursNext">00</span><span>:</span><span id="minutesNext">00</span><span>:</span><span id="secondsNext">00</span>
+          </div>
+        </div>
+        <div>
+          <button id="restartButton" class="btn btn-warning btn-lg" type="submit" onclick="onResetTimer()">
+            <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Reset
+          </button>
+          <button id="startButton" class="btn btn-primary btn-lg" type="submit" onclick="onStartTimer()">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start
+          </button>
+          <button id="stopButton" class="btn btn-danger btn-lg" type="submit" onclick="onStopTimer()">
+            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  
+
+  
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+ <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="js/pomodoro-timer.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script>
+
+    var input1;
+    var gMinutes;
+    var dataku;
+
+    //gMinutes = getInputValue();
+    //console.log(getInputValue());
+    //alert();
+    //console.log(getInputValue());
+
+
+    //document.getElementById("demo").innerHTML = myFunction("John");
+
+
+
+
+    $(document).ready(function() {
+        onPomodoroTimer();
+    });
+
+    function onPomodoroTimer(dataku){
+        //getInputValue();
+
+
+        if ( dataku == null){
+
+        } else {
+            gMinutes = dataku;
+        }
+
+        stopTimer();
+
+        gHours = 0;
+        //gMinutes = 50;
+        //gMinutes = ;
+        gSeconds = 0;
+
+        resetTimer();
+
+        $('#shortButton').removeClass('btn-success');
+        $('#longButton').removeClass('btn-success');
+        $('#pomodoroButton').addClass('btn-success');
+    }
+
+    function getInputValue(){
+        // Selecting the input element and get its value
+        var inputVal = document.getElementById("myInput").value;
+        document.getElementById("minutesValue").innerHTML = inputVal;
+
+        // Displaying the value
+        //alert(inputVal);
+        input1 = inputVal;
+        //input1 = "1";
+        //return  input1;
+
+        onPomodoroTimer(input1)
+
+        //onPomodoroTimer(inputVal);
+    }
+
+
+
+
+
+
+</script>
+  
+</body>
+</html>
