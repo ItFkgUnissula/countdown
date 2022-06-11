@@ -11,6 +11,7 @@ var audio1= new Audio('./sounds/silahkan membaca soal.mpeg');
 var audio2= new Audio('./sounds/silahkan mengerjakan soal.mpeg');
 var audio3= new Audio('./sounds/waktu kurang 3 menit.mpeg');
 //var audio1= new Audio('./sounds/ah.mpeg');
+//var audio4= new Audio('./sounds/waktu-telah-habis-luring.mp3'); //luring
 var audio4= new Audio('./sounds/waktu telah habis.mpeg');
 var audio5= new Audio('./sounds/ujian segera dimulai.mpeg');
 var delayInMilliseconds = 2000; //1 second
